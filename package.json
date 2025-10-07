@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "bunx --bun next dev --turbopack",
     "build": "bunx --bun next build --turbopack",
+    "postbuild": "bun run scripts/migrateDB.ts",
     "start": "bunx --bun next start",
     "lint": "bunx --bun biome check",
     "format": "biome format --write",

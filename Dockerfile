@@ -27,7 +27,7 @@ COPY . .
 
 # Ensure Next runs with Bun runtime
 # NEXT_RUNTIME can help for Edge/Node decisions; we keep default Next server runtime.
-# If you’re using experimental Bun runtime flags in Next, set them here.
+# If you're using experimental Bun runtime flags in Next, set them here.
 ENV NODE_ENV=production
 
 # Build the Next.js app (standalone output)
@@ -49,6 +49,11 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 # Public files
 COPY --from=builder /app/public ./public
+# Copy the migration script
+COPY --from=builder /app/scripts ./scripts
+# Copy the startup script
+COPY start.sh ./start.sh
+RUN chmod +x start.sh
 # If using next.config.js at runtime (rare), copy it:
 # COPY --from=builder /app/next.config.js ./
 
@@ -59,7 +64,5 @@ COPY --from=builder /app/public ./public
 # Expose port
 EXPOSE 3000
 
-# Start the Next.js standalone server with Bun to ensure Bun.x is available.
-# The standalone server entry is server.js at the root of the standalone output.
-# Using "bun run" ensures Bun’s runtime and Bun.x APIs are present.
-CMD ["bun", "server.js"]
+# Start with the startup script
+CMD ["./start.sh"]
