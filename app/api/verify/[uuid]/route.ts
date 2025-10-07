@@ -1,4 +1,4 @@
-import { mysql } from "@/app/serverUtils/buntils";
+import { getMysqlConnection } from "@/app/serverUtils/buntils";
 import { NextResponse } from "next/server";
 import { success } from "zod";
 
@@ -7,6 +7,9 @@ export async function GET(
   ctx: RouteContext<"/api/verify/[uuid]">,
 ) {
   const { uuid } = await ctx.params;
+
+  // Get a fresh database connection for this request
+  const mysql = getMysqlConnection();
 
   const resultData = await mysql`
     SELECT * FROM \`verification_hashes\` WHERE hash = ${uuid}

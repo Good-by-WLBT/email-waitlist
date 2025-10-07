@@ -1,4 +1,4 @@
-import { mysql } from "@/app/serverUtils/buntils";
+import { getMysqlConnection } from "@/app/serverUtils/buntils";
 import { sendEmail } from "@/lib/email";
 import { NextResponse } from "next/server";
 import * as z from "zod";
@@ -33,6 +33,9 @@ export async function POST(request: Request) {
       },
     );
   }
+
+  // Get a fresh database connection for this request
+  const mysql = getMysqlConnection();
 
   const doesPrefixExist = await mysql`
     SELECT * FROM \`users\` WHERE reserved_prefix = ${waitlistData.data.reserved_prefix}
