@@ -57,9 +57,7 @@ RUN chmod +x start.sh
 # If using next.config.js at runtime (rare), copy it:
 # COPY --from=builder /app/next.config.js ./
 
-# If you need environment variables at runtime, they should be passed via Docker envs.
-# Example:
-# ENV NEXT_PUBLIC_API_URL="https://example.com"
+COPY .env ./.env
 
 # Expose port
 EXPOSE 3000
