@@ -200,8 +200,8 @@ export default function Home() {
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-blue-700 mb-2">Frontend</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
-                      <li>Next.js 14</li>
-                      <li>TypeScript</li>
+                      <li>Laravel</li>
+                      <li>Blade</li>
                       <li>Tailwind CSS</li>
                       <li>shadcn/ui</li>
                       <li>Lucide Icons</li>
@@ -210,26 +210,29 @@ export default function Home() {
                   <div className="bg-purple-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-purple-700 mb-2">Backend</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
-                      <li>Next.js API Routes</li>
-                      <li>TypeScript</li>
-                      <li>Server-side utilities</li>
+                      <li>Laravel</li>
+                      <li>Blade</li>
+                      <li>Redis</li>
+                      <li>MariaDB</li>
+                      <li>Our backend is fully self-hosted</li>
                     </ul>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-green-700 mb-2">Tools & Deployment</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
-                      <li>Bun (Package Manager)</li>
+                      <li>BunJS</li>
                       <li>Docker</li>
-                      <li>Biome (Linting)</li>
-                      <li>PostgreSQL (Database)</li>
+                      <li>Biome</li>
+                      <li>PostgreSQL</li>
+                      <li>Cerebras AI</li>
                     </ul>
                   </div>
                   <div className="bg-orange-50 p-4 rounded-lg">
                     <h4 className="font-semibold text-orange-700 mb-2">Email Services</h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
-                      <li>Custom email handling</li>
-                      <li>Magic link authentication</li>
-                      <li>Email verification system</li>
+                        <li>Dovecot</li>
+                        <li>Postfix</li>
+                        <li>All hosted at Hetzner</li>
                     </ul>
                   </div>
                 </div>
