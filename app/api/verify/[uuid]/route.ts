@@ -1,6 +1,5 @@
 import { getMysqlConnection } from "@/app/serverUtils/buntils";
 import { NextResponse } from "next/server";
-import { success } from "zod";
 
 export async function GET(
   request: Request,
@@ -16,14 +15,7 @@ export async function GET(
     `;
 
   if (resultData.length === 0) {
-    return NextResponse.json(
-      {
-        success: false,
-      },
-      {
-        status: 404,
-      },
-    );
+    return NextResponse.redirect(new URL("/error", request.url));
   }
 
   await mysql`
@@ -34,7 +26,5 @@ export async function GET(
     DELETE FROM \`verification_hashes\` WHERE hash = ${uuid}
     `;
 
-  return NextResponse.json({
-    success: true,
-  });
+  return NextResponse.redirect(new URL("/verified", request.url));
 }

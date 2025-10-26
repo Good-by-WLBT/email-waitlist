@@ -6,13 +6,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import { Shield, Zap, Users, Mail, Send, AtSign, Inbox, Stamp, Code } from "lucide-react";
+  Shield,
+  Zap,
+  Users,
+  Mail,
+  Send,
+  AtSign,
+  Inbox,
+  Stamp,
+  Code,
+} from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -20,21 +25,66 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Floating Email Accents */}
       <div className="absolute inset-0 pointer-events-none hidden sm:block">
-        <Mail className="absolute top-20 left-10 h-8 w-8 text-blue-200 opacity-30 animate-bounce" style={{ animationDelay: '0s' }} />
-        <Send className="absolute top-40 right-20 h-6 w-6 text-purple-200 opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
-        <AtSign className="absolute bottom-40 left-20 h-7 w-7 text-blue-300 opacity-25 animate-bounce" style={{ animationDelay: '2s' }} />
-        <Inbox className="absolute bottom-20 right-10 h-9 w-9 text-purple-200 opacity-20 animate-pulse" style={{ animationDelay: '0.5s' }} />
-        <Stamp className="absolute top-60 left-1/4 h-5 w-5 text-blue-400 opacity-30 rotate-12 animate-bounce" style={{ animationDelay: '1.5s' }} />
-        <Mail className="absolute top-10 right-1/3 h-6 w-6 text-purple-300 opacity-35 animate-pulse" style={{ animationDelay: '3s' }} />
-        <Send className="absolute bottom-60 left-1/2 h-8 w-8 text-blue-200 opacity-25 animate-bounce" style={{ animationDelay: '0.8s' }} />
-        <AtSign className="absolute top-80 right-10 h-5 w-5 text-purple-400 opacity-30 animate-pulse" style={{ animationDelay: '2.5s' }} />
-        <Inbox className="absolute bottom-10 left-1/3 h-7 w-7 text-blue-300 opacity-20 animate-bounce" style={{ animationDelay: '1.2s' }} />
-        <Stamp className="absolute top-30 right-1/4 h-6 w-6 text-purple-200 opacity-40 rotate-45 animate-pulse" style={{ animationDelay: '0.3s' }} />
-        <Mail className="absolute bottom-30 right-1/2 h-9 w-9 text-blue-400 opacity-30 animate-bounce" style={{ animationDelay: '4s' }} />
-        <Send className="absolute top-50 left-5 h-7 w-7 text-purple-300 opacity-25 animate-pulse" style={{ animationDelay: '1.8s' }} />
-        <AtSign className="absolute bottom-50 right-5 h-8 w-8 text-blue-200 opacity-35 animate-bounce" style={{ animationDelay: '2.2s' }} />
-        <Inbox className="absolute top-70 right-1/3 h-5 w-5 text-purple-400 opacity-30 animate-pulse" style={{ animationDelay: '0.7s' }} />
-        <Stamp className="absolute bottom-70 left-1/4 h-6 w-6 text-blue-300 opacity-20 rotate-30 animate-bounce" style={{ animationDelay: '3.5s' }} />
+        <Mail
+          className="absolute top-20 left-10 h-8 w-8 text-blue-200 opacity-30 animate-bounce"
+          style={{ animationDelay: "0s" }}
+        />
+        <Send
+          className="absolute top-40 right-20 h-6 w-6 text-purple-200 opacity-40 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <AtSign
+          className="absolute bottom-40 left-20 h-7 w-7 text-blue-300 opacity-25 animate-bounce"
+          style={{ animationDelay: "2s" }}
+        />
+        <Inbox
+          className="absolute bottom-20 right-10 h-9 w-9 text-purple-200 opacity-20 animate-pulse"
+          style={{ animationDelay: "0.5s" }}
+        />
+        <Stamp
+          className="absolute top-60 left-1/4 h-5 w-5 text-blue-400 opacity-30 rotate-12 animate-bounce"
+          style={{ animationDelay: "1.5s" }}
+        />
+        <Mail
+          className="absolute top-10 right-1/3 h-6 w-6 text-purple-300 opacity-35 animate-pulse"
+          style={{ animationDelay: "3s" }}
+        />
+        <Send
+          className="absolute bottom-60 left-1/2 h-8 w-8 text-blue-200 opacity-25 animate-bounce"
+          style={{ animationDelay: "0.8s" }}
+        />
+        <AtSign
+          className="absolute top-80 right-10 h-5 w-5 text-purple-400 opacity-30 animate-pulse"
+          style={{ animationDelay: "2.5s" }}
+        />
+        <Inbox
+          className="absolute bottom-10 left-1/3 h-7 w-7 text-blue-300 opacity-20 animate-bounce"
+          style={{ animationDelay: "1.2s" }}
+        />
+        <Stamp
+          className="absolute top-30 right-1/4 h-6 w-6 text-purple-200 opacity-40 rotate-45 animate-pulse"
+          style={{ animationDelay: "0.3s" }}
+        />
+        <Mail
+          className="absolute bottom-30 right-1/2 h-9 w-9 text-blue-400 opacity-30 animate-bounce"
+          style={{ animationDelay: "4s" }}
+        />
+        <Send
+          className="absolute top-50 left-5 h-7 w-7 text-purple-300 opacity-25 animate-pulse"
+          style={{ animationDelay: "1.8s" }}
+        />
+        <AtSign
+          className="absolute bottom-50 right-5 h-8 w-8 text-blue-200 opacity-35 animate-bounce"
+          style={{ animationDelay: "2.2s" }}
+        />
+        <Inbox
+          className="absolute top-70 right-1/3 h-5 w-5 text-purple-400 opacity-30 animate-pulse"
+          style={{ animationDelay: "0.7s" }}
+        />
+        <Stamp
+          className="absolute bottom-70 left-1/4 h-6 w-6 text-blue-300 opacity-20 rotate-30 animate-bounce"
+          style={{ animationDelay: "3.5s" }}
+        />
       </div>
 
       <div className="w-full max-w-4xl relative z-10">
@@ -52,7 +102,12 @@ export default function Home() {
           <div className="flex items-center justify-center gap-2 mb-8">
             <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
             <div className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-32 md:w-32">
-              <Image src="/Logo-text.png" alt="Logo" fill className="object-contain" />
+              <Image
+                src="/Logo-text.png"
+                alt="Logo"
+                fill
+                className="object-contain"
+              />
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
           </div>
@@ -79,8 +134,8 @@ export default function Home() {
               >
                 <p>
                   I am{" "}
-                  <InlineInput name="fullname" placeholder="Your name..." /> and I
-                  am a{" "}
+                  <InlineInput name="fullname" placeholder="Your name..." /> and
+                  I am a{" "}
                   <InlineInput
                     name="job_description"
                     placeholder="Your job description..."
@@ -94,9 +149,15 @@ export default function Home() {
                 </p>
                 <p>
                   At release I would like to reserve the email{" "}
-                  <InlineInput name="reserved_prefix" placeholder="Your prefix..." />@
-                  <span className="text-blue-500 font-semibold bg-blue-50 px-1 rounded">goed.email</span> and my current
-                  e-mail is{" "}
+                  <InlineInput
+                    name="reserved_prefix"
+                    placeholder="Your prefix..."
+                  />
+                  @
+                  <span className="text-blue-500 font-semibold bg-blue-50 px-1 rounded">
+                    goed.email
+                  </span>{" "}
+                  and my current e-mail is{" "}
                   <InlineInput
                     type="email"
                     name="current_email"
@@ -140,9 +201,10 @@ export default function Home() {
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="alan-sans-400">
-                      Goed is the future of email, designed to be fast, private and user-friendly.
-                      We focus on delivering a seamless experience with top-notch security features
-                      to ensure your communications are private and enjoyable.
+                      Goed is the future of email, designed to be fast, private
+                      and user-friendly. We focus on delivering a seamless
+                      experience with top-notch security features to ensure your
+                      communications are private and enjoyable.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="features">
@@ -154,11 +216,25 @@ export default function Home() {
                     </AccordionTrigger>
                     <AccordionContent className="alan-sans-400">
                       <ul className="list-disc list-inside space-y-2">
-                        <li>Fast and intuitive interface for effortless email management.</li>
-                        <li>Robust privacy features ensuring your emails are secure and confidential.</li>
-                        <li>Custom domains and email aliases for personalized communication.</li>
-                        <li>Seamless integration with popular tools and services.</li>
-                        <li>AI-powered email organization and smart replies to boost productivity.</li>
+                        <li>
+                          Fast and intuitive interface for effortless email
+                          management.
+                        </li>
+                        <li>
+                          Robust privacy features ensuring your emails are
+                          secure and confidential.
+                        </li>
+                        <li>
+                          Custom domains and email aliases for personalized
+                          communication.
+                        </li>
+                        <li>
+                          Seamless integration with popular tools and services.
+                        </li>
+                        <li>
+                          AI-powered email organization and smart replies to
+                          boost productivity.
+                        </li>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
@@ -166,27 +242,34 @@ export default function Home() {
                     <AccordionTrigger className="text-left">
                       <div className="flex items-center gap-3">
                         <Shield className="h-5 w-5 text-blue-500" />
-                        <span className="alan-sans-400">Privacy & Security</span>
+                        <span className="alan-sans-400">
+                          Privacy & Security
+                        </span>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="alan-sans-400">
-                      Your privacy is our priority. We never read your emails or sell your data.
-                      All communications are encrypted, and we use industry-leading security measures
-                      to protect your information.
-
-                      We fully encrypt your emails, and you own the encryption keys. It's <strong>cryptographically impossible</strong> for us to read your data.
+                      Your privacy is our priority. We never read your emails or
+                      sell your data. All communications are encrypted, and we
+                      use industry-leading security measures to protect your
+                      information. We fully encrypt your emails, and you own the
+                      encryption keys. It's{" "}
+                      <strong>cryptographically impossible</strong> for us to
+                      read your data.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="community">
                     <AccordionTrigger className="text-left">
                       <div className="flex items-center gap-3">
                         <Users className="h-5 w-5 text-blue-500" />
-                        <span className="alan-sans-400">Join Our Community</span>
+                        <span className="alan-sans-400">
+                          Join Our Community
+                        </span>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="alan-sans-400">
-                      Be part of the early adopters shaping the future of email. Join our waitlist
-                      to get exclusive updates, beta access, and influence the development of Goed.
+                      Be part of the early adopters shaping the future of email.
+                      Join our waitlist to get exclusive updates, beta access,
+                      and influence the development of Goed.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -194,11 +277,15 @@ export default function Home() {
               <TabsContent value="developers" className="mt-6">
                 <div className="flex items-center gap-3 mb-4">
                   <Code className="h-5 w-5 text-blue-500" />
-                  <span className="text-lg font-semibold alan-sans-400">Our Tech Stack</span>
+                  <span className="text-lg font-semibold alan-sans-400">
+                    Our Tech Stack
+                  </span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 alan-sans-400">
                   <div className="bg-blue-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-blue-700 mb-2">Frontend</h4>
+                    <h4 className="font-semibold text-blue-700 mb-2">
+                      Frontend
+                    </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
                       <li>Laravel</li>
                       <li>Blade</li>
@@ -208,7 +295,9 @@ export default function Home() {
                     </ul>
                   </div>
                   <div className="bg-purple-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-purple-700 mb-2">Backend</h4>
+                    <h4 className="font-semibold text-purple-700 mb-2">
+                      Backend
+                    </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
                       <li>Laravel</li>
                       <li>Blade</li>
@@ -218,7 +307,9 @@ export default function Home() {
                     </ul>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-green-700 mb-2">Tools & Deployment</h4>
+                    <h4 className="font-semibold text-green-700 mb-2">
+                      Tools & Deployment
+                    </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
                       <li>BunJS</li>
                       <li>Docker</li>
@@ -228,11 +319,13 @@ export default function Home() {
                     </ul>
                   </div>
                   <div className="bg-orange-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-orange-700 mb-2">Email Services</h4>
+                    <h4 className="font-semibold text-orange-700 mb-2">
+                      Email Services
+                    </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm">
-                        <li>Dovecot</li>
-                        <li>Postfix</li>
-                        <li>All hosted at Hetzner</li>
+                      <li>Dovecot</li>
+                      <li>Postfix</li>
+                      <li>All hosted at Hetzner</li>
                     </ul>
                   </div>
                 </div>

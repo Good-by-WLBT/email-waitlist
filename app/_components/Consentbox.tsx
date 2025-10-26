@@ -24,7 +24,10 @@ export function ConsentBox() {
           </p>
         </label>
       </div>
-      <Button disabled={!checked} className="text-white bg-blue-500 disabled:opacity-50">
+      <Button
+        disabled={!checked}
+        className="text-white bg-blue-500 disabled:opacity-50"
+      >
         Send verification!
       </Button>
     </>

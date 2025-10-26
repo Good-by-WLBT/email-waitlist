@@ -24,7 +24,7 @@ async function connectWithRetry(maxRetries = 10, delayMs = 2000): Promise<SQL> {
         throw error;
       }
       console.log(`Retrying in ${delayMs}ms...`);
-      await new Promise(resolve => setTimeout(resolve, delayMs));
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
     }
   }
   throw new Error("Failed to connect to database after all retries");
