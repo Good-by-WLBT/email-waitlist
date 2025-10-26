@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
   const waitlistData = await waitlistSignup.safeParseAsync(input);
   if (!waitlistData.data) {
-    return NextResponse.redirect(new URL("/error", request.url));
+    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
   // Get a fresh database connection for this request
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     `;
 
   if (doesPrefixExist.length > 0) {
-    return NextResponse.redirect(new URL("/error", request.url));
+    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
   const doesEmailExist = await mysql`
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     `;
 
   if (doesEmailExist.length > 0) {
-    return NextResponse.redirect(new URL("/error", request.url));
+    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
   const insertUser = await mysql`
@@ -69,5 +69,5 @@ export async function POST(request: Request) {
     waitlistData.data.reserved_prefix,
   );
 
-  return NextResponse.redirect(new URL("/thank-you", request.url));
+  return NextResponse.redirect(new URL("/thank-you", process.env.APP_URL));
 }

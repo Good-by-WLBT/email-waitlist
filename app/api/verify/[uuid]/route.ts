@@ -2,7 +2,7 @@ import { getMysqlConnection } from "@/app/serverUtils/buntils";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
+  _request: Request,
   ctx: RouteContext<"/api/verify/[uuid]">,
 ) {
   const { uuid } = await ctx.params;
@@ -15,7 +15,7 @@ export async function GET(
     `;
 
   if (resultData.length === 0) {
-    return NextResponse.redirect(new URL("/error", request.url));
+    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
   await mysql`
@@ -26,5 +26,5 @@ export async function GET(
     DELETE FROM \`verification_hashes\` WHERE hash = ${uuid}
     `;
 
-  return NextResponse.redirect(new URL("/verified", request.url));
+  return NextResponse.redirect(new URL("/verified", process.env.APP_URL));
 }
