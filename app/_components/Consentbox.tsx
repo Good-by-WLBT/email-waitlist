@@ -53,6 +53,22 @@ export function ConsentBox() {
             );
             setTurnstileToken(null);
           }}
+          onUnsupported={() => {
+            console.error("Turnstile unsupported");
+            setTurnstileError(
+              "Your browser does not support verification. Please try a different browser.",
+            );
+            setTurnstileToken(null);
+          }}
+          scriptOptions={{
+            onError: () => {
+              console.error("Failed to load Turnstile script");
+              setTurnstileError(
+                "Failed to load verification script. Please check your ad blocker or try again.",
+              );
+              setTurnstileToken(null);
+            },
+          }}
           options={{
             appearance: "interaction-only",
             theme: "auto",
