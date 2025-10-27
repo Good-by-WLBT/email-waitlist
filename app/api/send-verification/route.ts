@@ -56,12 +56,16 @@ export async function POST(request: Request) {
   // Verify Turnstile token
   const turnstileToken = formData.get("cf-turnstile-response");
   if (!turnstileToken || typeof turnstileToken !== "string") {
-    return NextResponse.redirect(new URL(`/error?code=invalid_turnstile`, process.env.APP_URL));
+    return NextResponse.redirect(
+      new URL(`/error?code=invalid_turnstile`, process.env.APP_URL),
+    );
   }
 
   const isValidTurnstile = await verifyTurnstile(turnstileToken);
   if (!isValidTurnstile) {
-    return NextResponse.redirect(new URL("/error?code=invalid_turnstile", process.env.APP_URL));
+    return NextResponse.redirect(
+      new URL("/error?code=invalid_turnstile", process.env.APP_URL),
+    );
   }
 
   const input = {
@@ -74,7 +78,9 @@ export async function POST(request: Request) {
 
   const waitlistData = await waitlistSignup.safeParseAsync(input);
   if (!waitlistData.data) {
-    return NextResponse.redirect(new URL(`/error?code=invalid_input`, process.env.APP_URL));
+    return NextResponse.redirect(
+      new URL(`/error?code=invalid_input`, process.env.APP_URL),
+    );
   }
 
   // Get a fresh database connection for this request
@@ -85,7 +91,9 @@ export async function POST(request: Request) {
     `;
 
   if (doesPrefixExist.length > 0) {
-    return NextResponse.redirect(new URL("/error?code=prefix_taken", process.env.APP_URL));
+    return NextResponse.redirect(
+      new URL("/error?code=prefix_taken", process.env.APP_URL),
+    );
   }
 
   const doesEmailExist = await mysql`
@@ -93,7 +101,9 @@ export async function POST(request: Request) {
     `;
 
   if (doesEmailExist.length > 0) {
-    return NextResponse.redirect(new URL("/error?code=duplicate_entry", process.env.APP_URL));
+    return NextResponse.redirect(
+      new URL("/error?code=duplicate_entry", process.env.APP_URL),
+    );
   }
 
   const insertUser = await mysql`

@@ -5,18 +5,36 @@ import Link from "next/link";
 export default function ErrorPage() {
   const errorMap = [
     { code: "prefix_taken", message: "This prefix is already taken." },
-    { code: "invalid_email", message: "The email address provided is invalid." },
+    {
+      code: "invalid_email",
+      message: "The email address provided is invalid.",
+    },
     { code: "duplicate_entry", message: "You have already signed up." },
-    { code: "rate_limited", message: "You are signing up too frequently. Please wait and try again." },
-    { code: "server_error", message: "A server error occurred. Please try again later." },
-    { code: "invalid_turnstile", message: "Turnstile verification failed. Please complete the CAPTCHA challenge again." },
-    { code: "invalid_input", message: "The information provided is invalid or incomplete." },
-  ]
+    {
+      code: "rate_limited",
+      message: "You are signing up too frequently. Please wait and try again.",
+    },
+    {
+      code: "server_error",
+      message: "A server error occurred. Please try again later.",
+    },
+    {
+      code: "invalid_turnstile",
+      message:
+        "Turnstile verification failed. Please complete the CAPTCHA challenge again.",
+    },
+    {
+      code: "invalid_input",
+      message: "The information provided is invalid or incomplete.",
+    },
+  ];
 
   const searchParams = new URLSearchParams(window.location.search);
   const errorCode = searchParams.get("code");
 
-  const errorMessage = errorMap.find((error) => error.code === errorCode)?.message;
+  const errorMessage = errorMap.find(
+    (error) => error.code === errorCode,
+  )?.message;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 flex flex-col items-center justify-center p-4 relative overflow-hidden">
@@ -128,12 +146,13 @@ export default function ErrorPage() {
               <p className="text-gray-600 alan-sans-400 mb-6">
                 There was a problem processing your request. This could be due
                 to invalid information, a duplicate entry, or a technical issue.
-
                 <br />
-                The provided error code is: <strong>{errorCode || "unknown_error"}</strong>
+                The provided error code is:{" "}
+                <strong>{errorCode || "unknown_error"}</strong>
               </p>
               <p className="text-gray-700 alan-sans-400 mb-4">
-                {errorMessage || "An unexpected error occurred. Please try again later."}
+                {errorMessage ||
+                  "An unexpected error occurred. Please try again later."}
               </p>
               <p className="text-sm text-gray-500 alan-sans-400 mb-6">
                 Please try again or contact us if the problem persists.

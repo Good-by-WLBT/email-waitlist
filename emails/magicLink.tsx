@@ -69,6 +69,12 @@ export default function Email({
             <br /> Teun Wolbert, Founder and CEO of{" "}
             <span className="text-blue-500 font-bold">Goed.</span>
           </Text>
+          <Img
+            src="https://getgoed.com/Logo-text.png"
+            alt="Goed logo"
+            className="mt-8 mx-auto"
+            width={128}
+          />
         </Body>
       </Html>
     </Tailwind>

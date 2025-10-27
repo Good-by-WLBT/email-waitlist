@@ -2,7 +2,8 @@ import { render } from "@react-email/components";
 import { createTransport } from "nodemailer";
 import SMTPConnection from "nodemailer/lib/smtp-connection";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
-import Email from "@/emails/magicLink";
+import VerificationEmail from "@/emails/magicLink";
+import ThankYouEmail from "@/emails/thankYou";
 
 const configOptions = {
   host: process.env.SMTP_HOST,
@@ -24,7 +25,7 @@ export async function sendEmail(
   reserved_prefix: string,
 ) {
   const emailHtml = await render(
-    Email({
+    VerificationEmail({
       fullname: fullname,
       uuid: uuid,
       past_provider: past_provider,
@@ -36,6 +37,28 @@ export async function sendEmail(
     from: "The goed.email waitlist <support@goed.email>",
     to,
     subject: "Goed. Email waitlist confirmation",
+    html: emailHtml,
+  });
+
+  console.log(info);
+}
+
+export async function sendThankYouEmail(
+  to: string,
+  fullname: string,
+  reserved_prefix: string,
+) {
+  const emailHtml = await render(
+    ThankYouEmail({
+      fullname: fullname,
+      reserved_prefix: reserved_prefix,
+    }),
+  );
+
+  const info = await transporter.sendMail({
+    from: "The goed.email waitlist <support@goed.email>",
+    to,
+    subject: "Thanks for confirming your Goed. email",
     html: emailHtml,
   });
 
