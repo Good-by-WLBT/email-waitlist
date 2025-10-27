@@ -1,7 +1,7 @@
 import { render } from "@react-email/components";
 import { createTransport } from "nodemailer";
 import SMTPConnection from "nodemailer/lib/smtp-connection";
-import SMTPTransport from "nodemailer/lib/smtp-transport";
+import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import Email from "@/emails/magicLink";
 
 const configOptions = {

@@ -1,5 +1,5 @@
-import { getMysqlConnection } from "@/app/serverUtils/buntils";
 import { NextResponse } from "next/server";
+import { getMysqlConnection } from "@/app/serverUtils/buntils";
 
 export async function GET(
   _request: Request,
