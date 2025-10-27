@@ -1,11 +1,13 @@
 "use client";
 
+import { Turnstile } from "@marsidev/react-turnstile";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
 
 export function ConsentBox() {
   const [checked, setChecked] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   return (
     <>
       <div className="flex items-center pt-3 gap-2">
@@ -24,8 +26,19 @@ export function ConsentBox() {
           </p>
         </label>
       </div>
+      <div className="pt-4">
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+          onSuccess={(token) => setTurnstileToken(token)}
+        />
+      </div>
+      <input
+        type="hidden"
+        name="cf-turnstile-response"
+        value={turnstileToken || ""}
+      />
       <Button
-        disabled={!checked}
+        disabled={!checked || !turnstileToken}
         className="text-white bg-blue-500 disabled:opacity-50"
       >
         Send verification!

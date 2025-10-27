@@ -1,7 +1,7 @@
-import { getMysqlConnection } from "@/app/serverUtils/buntils";
-import { sendEmail } from "@/lib/email";
 import { NextResponse } from "next/server";
 import * as z from "zod";
+import { getMysqlConnection } from "@/app/serverUtils/buntils";
+import { sendEmail } from "@/lib/email";
 
 const waitlistSignup = z.object({
   fullname: z.string().max(50),
@@ -11,8 +11,50 @@ const waitlistSignup = z.object({
   current_email: z.email(),
 });
 
+async function verifyTurnstile(token: string): Promise<boolean> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+
+  if (!secretKey) {
+    console.error("TURNSTILE_SECRET_KEY is not set");
+    return false;
+  }
+
+  try {
+    const response = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          secret: secretKey,
+          response: token,
+        }),
+      },
+    );
+
+    const data = await response.json();
+    return data.success === true;
+  } catch (error) {
+    console.error("Turnstile verification error:", error);
+    return false;
+  }
+}
+
 export async function POST(request: Request) {
   const formData = await request.formData();
+
+  // Verify Turnstile token
+  const turnstileToken = formData.get("cf-turnstile-response");
+  if (!turnstileToken || typeof turnstileToken !== "string") {
+    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
+  }
+
+  const isValidTurnstile = await verifyTurnstile(turnstileToken);
+  if (!isValidTurnstile) {
+    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
+  }
 
   const input = {
     fullname: formData.get("fullname"),

@@ -1,5 +1,16 @@
-import React from "react";
-import { ConsentBox } from "./_components/Consentbox";
+import {
+  AtSign,
+  Code,
+  Inbox,
+  Mail,
+  Send,
+  Shield,
+  Stamp,
+  Users,
+  Zap,
+} from "lucide-react";
+import Image from "next/image";
+import type React from "react";
 import {
   Accordion,
   AccordionContent,
@@ -7,18 +18,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Shield,
-  Zap,
-  Users,
-  Mail,
-  Send,
-  AtSign,
-  Inbox,
-  Stamp,
-  Code,
-} from "lucide-react";
-import Image from "next/image";
+import { ConsentBox } from "./_components/Consentbox";
 
 export default function Home() {
   return (
