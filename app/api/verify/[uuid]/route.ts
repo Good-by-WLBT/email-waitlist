@@ -15,7 +15,7 @@ export async function GET(
     `;
 
   if (resultData.length === 0) {
-    return NextResponse.redirect(new URL("/error", process.env.APP_URL));
+    return NextResponse.redirect(new URL(`/error?code=invalid_verification`, process.env.APP_URL));
   }
 
   await mysql`
