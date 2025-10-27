@@ -8,6 +8,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 export function ConsentBox() {
   const [checked, setChecked] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileError, setTurnstileError] = useState<string | null>(null);
+
+  const handleTurnstileError = (message: string, error?: unknown) => {
+    if (error) {
+      console.error("Turnstile error:", error);
+    }
+    setTurnstileError(message);
+    setTurnstileToken(null);
+  };
+
   return (
     <>
       <div className="flex items-center pt-3 gap-2">
@@ -29,8 +39,46 @@ export function ConsentBox() {
       <div className="pt-4">
         <Turnstile
           siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
-          onSuccess={(token) => setTurnstileToken(token)}
+          onSuccess={(token) => {
+            setTurnstileToken(token);
+            setTurnstileError(null);
+          }}
+          onError={(error) => {
+            handleTurnstileError(
+              "Verification failed. Please refresh the page and try again.",
+              error,
+            );
+          }}
+          onExpire={() => {
+            console.warn("Turnstile token expired");
+            setTurnstileToken(null);
+          }}
+          onTimeout={() => {
+            handleTurnstileError(
+              "Verification timed out. Please refresh the page and try again.",
+            );
+          }}
+          onUnsupported={() => {
+            handleTurnstileError(
+              "Your browser does not support verification. Please try a different browser.",
+            );
+          }}
+          scriptOptions={{
+            onError: () => {
+              handleTurnstileError(
+                "Failed to load verification script. Please check your ad blocker or try again.",
+              );
+            },
+          }}
+          options={{
+            appearance: "interaction-only",
+            theme: "auto",
+            refreshExpired: "auto",
+          }}
         />
+        {turnstileError && (
+          <p className="text-red-500 text-sm mt-2">{turnstileError}</p>
+        )}
       </div>
       <input
         type="hidden"
