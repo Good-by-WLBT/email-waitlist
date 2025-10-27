@@ -10,6 +10,14 @@ export function ConsentBox() {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileError, setTurnstileError] = useState<string | null>(null);
 
+  const handleTurnstileError = (message: string, error?: unknown) => {
+    if (error) {
+      console.error("Turnstile error:", error);
+    }
+    setTurnstileError(message);
+    setTurnstileToken(null);
+  };
+
   return (
     <>
       <div className="flex items-center pt-3 gap-2">
@@ -36,37 +44,30 @@ export function ConsentBox() {
             setTurnstileError(null);
           }}
           onError={(error) => {
-            console.error("Turnstile error:", error);
-            setTurnstileError(
+            handleTurnstileError(
               "Verification failed. Please refresh the page and try again.",
+              error,
             );
-            setTurnstileToken(null);
           }}
           onExpire={() => {
             console.warn("Turnstile token expired");
             setTurnstileToken(null);
           }}
           onTimeout={() => {
-            console.error("Turnstile timeout");
-            setTurnstileError(
+            handleTurnstileError(
               "Verification timed out. Please refresh the page and try again.",
             );
-            setTurnstileToken(null);
           }}
           onUnsupported={() => {
-            console.error("Turnstile unsupported");
-            setTurnstileError(
+            handleTurnstileError(
               "Your browser does not support verification. Please try a different browser.",
             );
-            setTurnstileToken(null);
           }}
           scriptOptions={{
             onError: () => {
-              console.error("Failed to load Turnstile script");
-              setTurnstileError(
+              handleTurnstileError(
                 "Failed to load verification script. Please check your ad blocker or try again.",
               );
-              setTurnstileToken(null);
             },
           }}
           options={{
