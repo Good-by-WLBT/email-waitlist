@@ -1,6 +1,8 @@
+"use client";
 import { AlertCircle, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function ErrorPage() {
   const errorMap = [
@@ -29,7 +31,7 @@ export default function ErrorPage() {
     },
   ];
 
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = new URLSearchParams(usePathname());
   const errorCode = searchParams.get("code");
 
   const errorMessage = errorMap.find(
