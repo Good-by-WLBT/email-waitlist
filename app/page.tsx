@@ -119,12 +119,10 @@ export default function Home() {
           <div className="bg-white grid grid-cols-1 xl:grid-cols-2 border rounded-md shadow-sm text-left">
             <div className="p-10">
               <h1 className="font-heading text-3xl text-left text-black/70">
-                Welcome to a more private, fast and secure e-mail experience.
+                Experience Email the Way It Should Be.
               </h1>
-              <p>
-                <span className="text-blue-500 font-bold">Goed.</span> is the
-                email client made for you. Wwe cannot sell your data, everything
-                is private, encrypted; and our client is also fast to use.
+              <p className="mt-[16px]">
+                <span className="text-primary font-bold">Goed.</span> is the email client designed for you, where privacy, speed, and security come first. Your data is never sold, everything is private, fully encrypted, and our interface is built to be lightning fast. Join the waitlist today and be among the first to experience email done right.
               </p>
             </div>
             <div className="bg-zinc-100 p-10">
@@ -192,7 +190,7 @@ export default function Home() {
           <div className="relative z-10">
             <div className="flex items-center justify-center gap-3 mb-8">
               <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 fugaz-one-regular font-heading">
+              <h2 className="text-2xl sm:text-3xl font-bold text-black/70 fugaz-one-regular font-heading">
                 Why <span className="text-primary font-bold">Goed</span>?
               </h2>
               <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
@@ -301,8 +299,8 @@ export default function Home() {
                       <li>Laravel</li>
                       <li>Blade</li>
                       <li>Tailwind CSS</li>
-                      <li>shadcn/ui</li>
-                      <li>Lucide Icons</li>
+                      <li>Custom UI library</li>
+                      <li>Tabler Icons</li>
                     </ul>
                   </div>
                   <div className="bg-purple-50 p-4 rounded-lg">
