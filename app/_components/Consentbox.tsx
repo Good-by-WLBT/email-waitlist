@@ -19,17 +19,19 @@ export function ConsentBox() {
         <label htmlFor="consent">
           <p>
             I hereby give consent for{" "}
-            <span className="font-bold text-blue-500">Goed.</span> to e-mail me
+            <span className="font-bold text-primary">Goed.</span> to e-mail me
             and save the data entered.
           </p>
         </label>
       </div>
-      <Button
-        disabled={!checked}
-        className="text-white bg-blue-500 disabled:opacity-50"
-      >
-        Send verification!
-      </Button>
+      <div className=" flex justify-end w-full">
+        <Button
+          disabled={!checked}
+          className="text-white bg-primary disabled:opacity-80 ml-auto w-fit"
+        >
+          Send verification!
+        </Button>
+      </div>
     </>
   );
 }

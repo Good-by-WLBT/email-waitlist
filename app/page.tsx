@@ -19,10 +19,11 @@ import {
   Code,
 } from "lucide-react";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-100 to-blue-200 flex flex-col font-alan items-center justify-center p-4 relative overflow-hidden">
       {/* Floating Email Accents */}
       <div className="absolute inset-0 pointer-events-none hidden sm:block">
         <Mail
@@ -87,15 +88,16 @@ export default function Home() {
         />
       </div>
 
-      <div className="w-full max-w-4xl relative z-10">
+      <div className="w-full xl:max-w-[50%] relative z-10">
         {/* Main Content */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <div className="relative inline-block mb-6 mt-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 fugaz-one-regular">
-              Goed. waitlist
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black/70 font-heading">
+              Join the <span className="text-primary font-bold">Goed.</span>{" "}
+              Waitlist
             </h1>
             {/* Decorative Stamp */}
-            <div className="absolute -top-2 -right-15 sm:-right-16 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full transform rotate-12 shadow-lg border-2 border-blue-600">
+            <div className="absolute -top-2 -right-15 sm:-right-16 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full transform rotate-12 shadow-lg border-2 border-primary-alt hidden xl:block">
               COMING SOON
             </div>
           </div>
@@ -111,60 +113,69 @@ export default function Home() {
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
           </div>
-          <p className="text-lg sm:text-xl text-gray-600 mb-8 alan-sans-400 relative">
+          <p className="text-lg sm:text-xl text-gray-600 mb-8 relative">
             Join the waitlist to help us build the future of email!
-            <AtSign className="absolute -left-8 top-1 h-4 w-4 text-blue-400 opacity-60" />
           </p>
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-xl w-full max-w-2xl mx-auto p-4 sm:p-8 relative">
-            {/* Paper-like texture overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/50 to-transparent rounded-2xl pointer-events-none"></div>
-            {/* Corner fold effect */}
-            <div className="absolute top-0 right-0 w-0 h-0 border-l-8 border-l-transparent border-t-8 border-t-gray-100"></div>
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-center gap-2 mb-6">
-                <h2 className="text-xl sm:text-2xl font-bold fugaz-one-regular text-gray-800">
-                  Let's get to know you.
-                </h2>
-              </div>
+          <div className="bg-white grid grid-cols-1 xl:grid-cols-2 border rounded-md shadow-sm text-left">
+            <div className="p-10">
+              <h1 className="font-heading text-3xl text-left text-black/70">
+                Welcome to a more private, fast and secure e-mail experience.
+              </h1>
+              <p>
+                <span className="text-blue-500 font-bold">Goed.</span> is the
+                email client made for you. Wwe cannot sell your data, everything
+                is private, encrypted; and our client is also fast to use.
+              </p>
+            </div>
+            <div className="bg-zinc-100 p-10">
+              <h1 className="font-heading text-3xl text-center text-black/70">
+                Lets get to know you.
+              </h1>
               <form
-                className="space-y-4 text-left alan-sans-400"
+                className="space-y-4 text-left alan-sans-400 mt-4"
                 method="POST"
                 action={"/api/send-verification"}
               >
-                <p>
-                  I am{" "}
-                  <InlineInput name="fullname" placeholder="Your name..." /> and
-                  I am a{" "}
-                  <InlineInput
+                <div>
+                  <label>
+                    Full name <span className=" text-primary">*</span>
+                  </label>
+                  <Input
+                    name="fullname"
+                    placeholder="Your name..."
+                    className="bg-white"
+                  />
+                </div>
+                <div>
+                  <label>Job description</label>
+                  <Input
                     name="job_description"
                     placeholder="Your job description..."
-                  />{" "}
-                  and I am currently using{" "}
-                  <InlineInput
-                    name="current_email_provider"
-                    placeholder="Your current email provider..."
+                    className="bg-white"
                   />
-                  .
-                </p>
-                <p>
-                  At release I would like to reserve the email{" "}
-                  <InlineInput
+                </div>
+                <div>
+                  <label>
+                    Your preffered email prefix{" "}
+                    <span className=" text-primary">*</span>
+                  </label>
+                  <Input
                     name="reserved_prefix"
                     placeholder="Your prefix..."
+                    className="bg-white"
                   />
-                  @
-                  <span className="text-blue-500 font-semibold bg-blue-50 px-1 rounded">
-                    goed.email
-                  </span>{" "}
-                  and my current e-mail is{" "}
-                  <InlineInput
-                    type="email"
+                </div>
+                <div>
+                  <label>
+                    Current e-mail <span className=" text-primary">*</span>
+                  </label>
+                  <Input
                     name="current_email"
-                    placeholder="test@example.com"
+                    type="email"
+                    placeholder="Your current email address..."
+                    className="bg-white"
                   />
-                  .
-                </p>
+                </div>
                 <ConsentBox />
               </form>
             </div>
@@ -172,7 +183,7 @@ export default function Home() {
         </div>
 
         {/* Info Boxes */}
-        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 max-w-2xl mx-auto relative">
+        <div className="p-4 sm:p-8 mx-auto relative bg-white border rounded-md shadow-sm text-left min-w-[50%]">
           {/* Paper-like texture overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-transparent rounded-2xl pointer-events-none"></div>
           {/* Corner fold effect */}
@@ -181,8 +192,8 @@ export default function Home() {
           <div className="relative z-10">
             <div className="flex items-center justify-center gap-3 mb-8">
               <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 fugaz-one-regular">
-                Why <span className="text-blue-500 font-bold">Goed</span>?
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 fugaz-one-regular font-heading">
+                Why <span className="text-primary font-bold">Goed</span>?
               </h2>
               <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
             </div>
@@ -196,7 +207,7 @@ export default function Home() {
                   <AccordionItem value="about">
                     <AccordionTrigger className="text-left">
                       <div className="flex items-center gap-3">
-                        <Mail className="h-5 w-5 text-blue-500" />
+                        <Mail className="h-5 w-5 text-primary" />
                         <span className="alan-sans-400">What is Goed?</span>
                       </div>
                     </AccordionTrigger>
@@ -210,7 +221,7 @@ export default function Home() {
                   <AccordionItem value="features">
                     <AccordionTrigger className="text-left">
                       <div className="flex items-center gap-3">
-                        <Zap className="h-5 w-5 text-blue-500" />
+                        <Zap className="h-5 w-5 text-primary" />
                         <span className="alan-sans-400">Key Features</span>
                       </div>
                     </AccordionTrigger>
@@ -241,7 +252,7 @@ export default function Home() {
                   <AccordionItem value="privacy">
                     <AccordionTrigger className="text-left">
                       <div className="flex items-center gap-3">
-                        <Shield className="h-5 w-5 text-blue-500" />
+                        <Shield className="h-5 w-5 text-primary" />
                         <span className="alan-sans-400">
                           Privacy & Security
                         </span>
@@ -260,7 +271,7 @@ export default function Home() {
                   <AccordionItem value="community">
                     <AccordionTrigger className="text-left">
                       <div className="flex items-center gap-3">
-                        <Users className="h-5 w-5 text-blue-500" />
+                        <Users className="h-5 w-5 text-primary" />
                         <span className="alan-sans-400">
                           Join Our Community
                         </span>
@@ -276,7 +287,7 @@ export default function Home() {
               </TabsContent>
               <TabsContent value="developers" className="mt-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Code className="h-5 w-5 text-blue-500" />
+                  <Code className="h-5 w-5 text-primary" />
                   <span className="text-lg font-semibold alan-sans-400">
                     Our Tech Stack
                   </span>
