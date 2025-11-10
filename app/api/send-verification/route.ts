@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     `;
 
   if (doesPrefixExist.length > 0) {
-    console.lg("prefix taken erro");
+    console.log("prefix taken erro");
     return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
