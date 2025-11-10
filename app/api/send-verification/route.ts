@@ -24,6 +24,7 @@ export async function POST(request: Request) {
 
   const waitlistData = await waitlistSignup.safeParseAsync(input);
   if (!waitlistData.data) {
+    console.log("Parse error");
     return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
     `;
 
   if (doesPrefixExist.length > 0) {
+    console.lg("prefix taken erro");
     return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
@@ -43,6 +45,7 @@ export async function POST(request: Request) {
     `;
 
   if (doesEmailExist.length > 0) {
+    console.log("email already registered error");
     return NextResponse.redirect(new URL("/error", process.env.APP_URL));
   }
 
