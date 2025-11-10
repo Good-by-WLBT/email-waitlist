@@ -57,8 +57,6 @@ RUN chmod +x start.sh
 # If using next.config.js at runtime (rare), copy it:
 # COPY --from=builder /app/next.config.js ./
 
-COPY .env ./.env
-
 # Expose port
 EXPOSE 3000
 
