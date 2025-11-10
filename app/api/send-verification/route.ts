@@ -17,7 +17,9 @@ export async function POST(request: Request) {
   const input = {
     fullname: formData.get("fullname"),
     job_description: formData.get("job_description"),
-    current_email_provider: formData.get("current_email_provider"),
+    current_email_provider: (formData.get("current_email") as string).split(
+      "@",
+    )[1],
     reserved_prefix: formData.get("reserved_prefix"),
     current_email: formData.get("current_email"),
   };
