@@ -117,12 +117,15 @@ export default function Home() {
             Join the waitlist to help us build the future of email!
           </p>
           <div className="bg-white grid grid-cols-1 xl:grid-cols-2 border rounded-md shadow-sm text-left">
-            <div className="p-10">
+            <div className="p-10 flex flex-col xl:min-h-[100%]">
               <h1 className="font-heading text-3xl text-left text-black/70">
                 Experience Email the Way It Should Be.
               </h1>
               <p className="mt-[16px]">
                 <span className="text-primary font-bold">Goed.</span> is the email client designed for you, where privacy, speed, and security come first. Your data is never sold, everything is private, fully encrypted, and our interface is built to be lightning fast. Join the waitlist today and be among the first to experience email done right.
+              </p>
+              <p className="mt-[16px] xl:mt-auto flex items-center gap-1">
+                <Mail className="text-primary size-5" /><span>support@goed.email</span>
               </p>
             </div>
             <div className="bg-zinc-100 p-10">
